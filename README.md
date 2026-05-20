@@ -1,79 +1,25 @@
 # のばた矯正歯科 予約サイトMVP
 
-GitHub / Vercel に載せるためのフロントエンドMVPです。
+Vite + React + TypeScript + Tailwind CSS のプレビュー実装です。
 
-## 機能
-
-### 患者側
-- 「初めての方」「当院に通われている方」の入口分岐
-- 予約種別選択
-- 1週間分の空き枠表示
-- 「前の週」「次の週」で週切り替え
-- 患者情報入力
-- 個人情報の取り扱い同意チェック
-- 予約確認・完了画面
-
-### 管理画面
-- チェア別・時間別の予約表
-  - 横軸：チェア
-  - 縦軸：15分単位の時間
-- 左側カレンダー
-- 患者検索
-  - 氏名（漢字）
-  - よみ
-  - 診察券番号
-  - 電話番号
-  - 電話番号はハイフンなし検索対応
-- 予約ステータス変更
-- 右上の設定画面
-  - 予約種別管理
-  - Web予約ON/OFF
-  - スタッフシフト
-  - 定休日・臨時休診日
-
-## 予約可能枠の判定順
-
-以下の順番で除外する設計です。
-
-1. 定休日
-2. 臨時休診日
-3. 診療時間
-4. 既存予約
-5. 処置時間分の連続空き
-
-## セットアップ
+## ローカル起動
 
 ```bash
 npm install
 npm run dev
 ```
 
-ブラウザで以下を開きます。
+## Vercel設定
 
-```bash
-http://localhost:5173
-```
+- Framework Preset: Vite
+- Build Command: npm run build
+- Output Directory: dist
+- Install Command: npm install
 
-## Vercelデプロイ
+## 修正済みポイント
 
-1. このフォルダをGitHubにpush
-2. VercelでNew Project
-3. 対象リポジトリを選択
-4. Framework Presetは `Vite`
-5. Build Commandは `npm run build`
-6. Output Directoryは `dist`
-7. Deploy
-
-## 注意
-
-このMVPは画面・ロジック確認用のフロントエンドです。
-実運用では、Supabaseなどを接続し、患者情報・予約情報・休診日・スタッフシフトなどをDB管理してください。
-
-個人情報を扱うため、本番運用では以下が必要です。
-
-- Supabase Authなどによる管理画面ログイン
-- RLS設定
-- 操作ログ保存
-- 個人情報同意日時の保存
-- 通信のHTTPS化
-- バックアップ設計
+- `moduleResolution` は `Bundler`
+- Tailwind CSS は v3.4.17 に固定
+- PostCSSは `tailwindcss` を直接利用可能な構成
+- 患者検索はハイフンなし電話番号に対応
+- 患者側は1週間分の空き枠表示と前週/次週切替に対応
